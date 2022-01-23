@@ -15,7 +15,7 @@ class ModelAnalyser:
 
     def match_gold_standard(self):
         problem = self.experiment_utils.build_problem()
-        model = self.experiment_utils.load_trained_model()
+        model = self.experiment_utils.load_trained_model(gpu_number=self.gpu)
         analysis_technique = self.experiment_utils.build_analyser()
 
         analysis_runner = AnalysisRunner(self.configuration)
@@ -47,6 +47,6 @@ if __name__ == "__main__":
     configuration = configuration_loader.load(args.configuration)
 
     model_analyser = ModelAnalyser(configuration, gpu=args.gpu)
-    #model_analyser.match_gold_standard()
+    model_analyser.match_gold_standard()
 
     model_analyser.compute_analysis()
